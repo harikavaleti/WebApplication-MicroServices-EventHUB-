@@ -18,6 +18,10 @@ namespace WebMVC.Infrastructure
         public static class Basket
         {
 
+            public static string GetAllCatalogItems(string baseUri, int page, int take)
+            {
+                return $"{baseUri}items?pageIndex={page}&pageSize={take}";
+            }
         }
     }
 }
