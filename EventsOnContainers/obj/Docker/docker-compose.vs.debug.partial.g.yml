@@ -11,19 +11,20 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_eventcatalog$
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/app
       - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
-#$nuget_volume_mapping_eventcatalog$
+      - C:\Users\Admin\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_eventcatalog$ \"/app/bin/Debug/netcoreapp3.1/EventCatalogApi.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/netcoreapp3.1/EventCatalogApi.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
@@ -37,19 +38,20 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_webmvc$
+      - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
       - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/app
       - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
-#$nuget_volume_mapping_webmvc$
+      - C:\Users\Admin\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_webmvc$ \"/app/bin/Debug/netcoreapp3.1/WebMVC.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/netcoreapp3.1/WebMVC.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
