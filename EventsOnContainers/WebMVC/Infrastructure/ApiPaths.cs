@@ -27,12 +27,18 @@ namespace WebMVC.Infrastructure
         {
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
 =======
+=======
+>>>>>>> Stashed changes
             public static string GetAllCatalogItems(string baseUri, int page, int take)
             {
                 return $"{baseUri}items?pageIndex={page}&pageSize={take}";
             }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     }
