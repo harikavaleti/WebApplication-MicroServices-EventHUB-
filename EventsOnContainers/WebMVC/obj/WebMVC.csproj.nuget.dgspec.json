@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\WebMVC.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\WebMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\WebMVC.csproj": {
+    "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\WebMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
         "projectName": "WebMVC",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

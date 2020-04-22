@@ -52,6 +52,25 @@ namespace EventCatalogApi.Controllers
         {
             items.ForEach(c => c.PictureUrl = c.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced", _config["ExternalCatalogBaseUrl"]));
             return items;
+
+
+        }
+
+        [HttpGet]
+        [Route("action")]
+        public async Task<IActionResult> EventTypes()
+        {
+            var items = await _context.EventTypes.ToListAsync();
+            return Ok(items);
+        }
+
+
+        [HttpGet]
+        [Route("action")]
+        public async Task<IActionResult> EventLocations()
+        {
+            var items = await _context.EventLocations.ToListAsync();
+            return Ok(items);
         }
 
     }

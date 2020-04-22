@@ -8312,11 +8312,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
       "projectName": "EventCatalogApi",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\EventCatalogApi\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\EventCatalogApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

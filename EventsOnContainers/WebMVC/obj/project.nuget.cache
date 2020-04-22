@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mdhYfLu62Q8k4nuq/PIlv1Df9H9CoFXbEE3a0PFL0i/buMagjNob6pcAIlVcaCnB3Xqu8jpHIjf/maUi4enxnQ==",
+  "dgSpecHash": "t09UgAgb3FsyCyzDR6tnTic3TnhtgQOU/hbMcjsQ+/nZlMhdviL0bGQQ5kGw9EGlO8kN68K9M8tAcT8tEax5OQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\WebMVC\\WebMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

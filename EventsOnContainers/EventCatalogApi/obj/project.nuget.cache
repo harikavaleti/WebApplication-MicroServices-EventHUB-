@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EG9C6iJp9aiPsrXQIMmX+t+2s43FeX1Tjy7l1XD/lruR3bvJAZr3NhIz6UpwNfcW4DhQ5/gjaSeJAFSDsQ1dHw==",
+  "dgSpecHash": "VVe/mDnDnpXT1KGKdcyHUPyg0jUv/mIwgGAmxjZ9W/g3uhDLHVfbi/1v2raNwFY77Jz72N8kbBeHBh151WjVUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Git\\WebApplication-MicroServices\\EventsOnContainers\\EventCatalogApi\\EventCatalogApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
