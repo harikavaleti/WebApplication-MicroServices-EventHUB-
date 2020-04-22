@@ -13,8 +13,8 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi:/app
-      - C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi:/src
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/app
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\Admin\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro
@@ -40,8 +40,8 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\Admin\source\repos\EventsOnContainers\webmvc:/app
-      - C:\Users\Admin\source\repos\EventsOnContainers\webmvc:/src
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/app
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\Admin\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Microsoft\Xamarin\NuGet\:/root/.nuget/fallbackpackages:ro

@@ -24,14 +24,17 @@ namespace WebMVC.Controllers
             var vm = new CatalogIndexViewModel
             {
                 CatalogItems = events.Data,
-                PaginationInfo = new PaginationInfo
+                PaginationInfo = new PaginationInfo 
                 {
                     ActualPage = page ?? 0,
                     ItemsPerPage = itemsOnPage,
                     TotalItems = events.Count,
                     TotalPages = (int)Math.Ceiling((decimal)events.Count / itemsOnPage)
 
-                }
+                },
+                Location = await _service.GetLocationAsync(),
+                Types = await _service.GetTypeAsync(),
+                
             };
 
             return View(vm);

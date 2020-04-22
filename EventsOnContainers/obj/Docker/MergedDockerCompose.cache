@@ -4,7 +4,7 @@ networks:
 services:
   eventcatalog:
     build:
-      context: C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi
       dockerfile: Dockerfile
     container_name: eventcatalogApi
     depends_on:
@@ -35,7 +35,7 @@ services:
       target: 1433
   webmvc:
     build:
-      context: C:\Users\Admin\source\repos\EventsOnContainers\webmvc
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc
       dockerfile: Dockerfile
     container_name: webeventshop
     depends_on:

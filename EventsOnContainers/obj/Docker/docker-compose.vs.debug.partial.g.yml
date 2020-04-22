@@ -13,8 +13,8 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_eventcatalog$
     volumes:
-      - C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi:/app
-      - C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi:/src
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/app
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_eventcatalog$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -23,7 +23,7 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_eventcatalog$ \"/app/bin/Debug/netcoreapp3.1/EventCatalogApi.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_eventcatalog$ \"/src/../../../../../source/repos/EventsOnContainers/EventCatalogApi/bin/Debug/netcoreapp3.1/EventCatalogApi.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
@@ -39,8 +39,8 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_webmvc$
     volumes:
-      - C:\Users\Admin\source\repos\EventsOnContainers\webmvc:/app
-      - C:\Users\Admin\source\repos\EventsOnContainers\webmvc:/src
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/app
+      - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/src
       - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
 #$nuget_volume_mapping_webmvc$
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -49,7 +49,7 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_webmvc$ \"/app/bin/Debug/netcoreapp3.1/WebMVC.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_webmvc$ \"/src/../../../../../source/repos/EventsOnContainers/WebMVC/bin/Debug/netcoreapp3.1/WebMVC.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

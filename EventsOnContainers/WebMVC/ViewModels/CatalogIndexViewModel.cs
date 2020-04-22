@@ -10,11 +10,11 @@ namespace WebMVC.ViewModels
     public class CatalogIndexViewModel
     {
         public PaginationInfo PaginationInfo { get; set; }
-        public IEnumerable<SelectListItem> Brands { get; set; }
+        public IEnumerable<SelectListItem> Location { get; set; }
         public IEnumerable<SelectListItem> Types { get; set; }
         public IEnumerable<EventDetails> CatalogItems { get; set; }
 
-        public int? BrandFilterApplied { get; set; }
+        public int? LocationFilterApplied { get; set; }
         public int? TypesFilterApplied { get; set; }
 
     }

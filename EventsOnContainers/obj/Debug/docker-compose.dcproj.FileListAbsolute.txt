@@ -20,3 +20,4 @@ C:\Users\Admin\source\repos\EventsOnContainers\bin\Debug\WebMVC.exe
 C:\Users\Admin\source\repos\EventsOnContainers\bin\Debug\WebMVC.dll
 C:\Users\Admin\source\repos\EventsOnContainers\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Admin\source\repos\EventsOnContainers\bin\Debug\WebMVC.pdb
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
