@@ -113,3 +113,12 @@ C:\Users\Admin\source\repos\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Admin\source\repos\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\_pagination.cshtml.g.cs
 C:\Users\Admin\source\repos\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\_product.cshtml.g.cs
 C:\Users\Admin\source\repos\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Header.cshtml.g.cs
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.RazorAssemblyInfo.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.RazorAssemblyInfo.cs
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.dll
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.pdb

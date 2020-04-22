@@ -112,3 +112,10 @@ C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi\bin\Debug\netcore
 C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.dll
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi\obj\Debug\netcoreapp3.1\EventCatalogApi.pdb
