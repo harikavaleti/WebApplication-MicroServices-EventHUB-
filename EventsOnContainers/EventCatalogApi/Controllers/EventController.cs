@@ -32,7 +32,7 @@ namespace EventCatalogApi.Controllers
         {
             var itemsCount = await _context.EventDetails.LongCountAsync();
 
-            var items = await _context.EventDetails.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            var items = await _context.EventDetails.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             items = ChangePictureUrl(items);
 
@@ -48,6 +48,35 @@ namespace EventCatalogApi.Controllers
             return Ok(model);
         }
 
+        [HttpGet]
+        [Route("[action]/type/{eventTypeId}/location/{eventLocationId}")]
+        public async Task<IActionResult> Items(int? eventTypeId, 
+                                                 int? eventLocationId, 
+                                                [FromQuery]int pageIndex = 0,
+                                                [FromQuery]int pageSize = 6)
+        {
+            var root = (IQueryable<EventDetails>)_context.EventDetails;
+            if (eventTypeId.HasValue)
+            {
+                root = root.Where(c => c.EventTypeId == eventTypeId || eventTypeId == -1);
+            }
+            if (eventLocationId.HasValue)
+            {
+                root = root.Where(c => c.EventLocationId == eventLocationId || eventLocationId == -1);
+            }
+            var itemsCount = await root.LongCountAsync();
+            var items = await root.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            items = ChangePictureUrl(items);
+            var model = new PaginatedItemsViewModel<EventDetails>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Data = items,
+                Count = itemsCount
+            };
+            return Ok(model);
+        }
+
         private List<EventDetails> ChangePictureUrl(List<EventDetails> items)
         {
             items.ForEach(c => c.PictureUrl = c.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced", _config["ExternalCatalogBaseUrl"]));
@@ -57,7 +86,7 @@ namespace EventCatalogApi.Controllers
         }
 
         [HttpGet]
-        [Route("action")]
+        [Route("[action]")]
         public async Task<IActionResult> EventTypes()
         {
             var items = await _context.EventTypes.ToListAsync();
@@ -66,7 +95,7 @@ namespace EventCatalogApi.Controllers
 
 
         [HttpGet]
-        [Route("action")]
+        [Route("[action]")]
         public async Task<IActionResult> EventLocations()
         {
             var items = await _context.EventLocations.ToListAsync();

@@ -9,17 +9,24 @@ namespace WebMVC.Infrastructure
     {
         public static class Catalog
         {   
-            public static string GetAllCatalogItems(string baseUri, int page, int take)
+            public static string GetAllCatalogItems(string baseUri, int page, int take, int? type, int? location )
             {
-                return $"{baseUri}items?pageIndex={page}&pageSize={take}";
+                var filterQS = string.Empty;
+                if (type.HasValue || location.HasValue)
+                {
+                    var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
+                    var locationQs = (location.HasValue) ? location.Value.ToString() : "null";
+                    filterQS = $"/type/{typeQs}/location/{locationQs}";
+                }
+                return $"{baseUri}items{filterQS}?pageIndex={page}&pageSize={take}";
             }
             public static string GetAllTypes(string baseUri)
             {
-                return $"{baseUri}catalogtypes";
+                return $"{baseUri}eventtypes";
             }
             public static string GetAllLocations(string baseUri)
             {
-                return $"{baseUri}cataloglocations";
+                return $"{baseUri}eventlocations";
             }
 
         }

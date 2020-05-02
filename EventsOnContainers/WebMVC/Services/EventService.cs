@@ -20,10 +20,10 @@ namespace WebMVC.Services
             _baseUri = $"{config["EventCatalogUrl"]}/api/event/";
             _client = client;
         }
-        public async Task<Event> GetEventItemsAsync(int page, int size)
+        public async Task<Event> GetEventItemsAsync(int page, int size, int? type, int? location)
         {
 
-           var eventItemsUri = ApiPaths.Catalog.GetAllCatalogItems(_baseUri, page, size);
+           var eventItemsUri = ApiPaths.Catalog.GetAllCatalogItems(_baseUri, page, size, type, location);
 
            string datastring = await _client.GetStringAsync(eventItemsUri);
 
@@ -39,7 +39,7 @@ namespace WebMVC.Services
            {
                new SelectListItem
                {
-                   Value = null,
+                   Value = "-1",
                    Text = "All",
                    Selected = true
                }
@@ -65,7 +65,7 @@ namespace WebMVC.Services
             {
                 new SelectListItem
                 {
-                   Value = null,
+                   Value = "-1",
                    Text = "All",
                    Selected = true
                 }
