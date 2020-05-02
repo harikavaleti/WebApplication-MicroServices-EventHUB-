@@ -31,6 +31,7 @@ namespace EventCatalogApi
         var database = Configuration["DatabaseName"];
         var user = Configuration["DatabaseUser"];
         var password = Configuration["DatabasePassword"];
+
          var connectionString = $"Server={server};Database={database};User Id={user};Password={password}";
          // var connectionString = Configuration["ConnectionString"];
             services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
