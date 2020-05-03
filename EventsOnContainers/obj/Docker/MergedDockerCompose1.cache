@@ -57,6 +57,52 @@ services:
     ports:
     - published: 1663
       target: 1433
+  tokenserver:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: TokenServiceApi
+      target: base
+    container_name: tokenserviceapi
+    depends_on:
+    - mssqlserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      MvcClient: http://localhost:9900
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/tokenapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp2.1/TokenServiceApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 7700
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi:/src:rw
   webmvc:
     build:
       context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc
@@ -71,8 +117,10 @@ services:
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      CallBackUrl: http://localhost:9900
       DOTNET_USE_POLLING_FILE_WATCHER: '1'
       EventCatalogUrl: http://eventcatalog
+      IdentityUrl: http://192.168.0.10:7700
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
     image: events/webmvc:dev
     labels:
@@ -85,7 +133,7 @@ services:
     networks:
       frontend: {}
     ports:
-    - published: 6006
+    - published: 9900
       target: 80
     tty: true
     volumes:

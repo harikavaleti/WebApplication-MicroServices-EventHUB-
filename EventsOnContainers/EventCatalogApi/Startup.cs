@@ -35,6 +35,16 @@ namespace EventCatalogApi
          var connectionString = $"Server={server};Database={database};User Id={user};Password={password}";
          // var connectionString = Configuration["ConnectionString"];
             services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "EventHUB - Event API",
+                    Version = "V1",
+                    Description= "Event HUB Microservice"
+                }) ;
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +58,11 @@ namespace EventCatalogApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSwagger().UseSwaggerUI(e =>
+            {
+                e.SwaggerEndpoint($"/swagger/V1/swagger.json", "EventCatalog API V1");
+            });
+
 
             app.UseEndpoints(endpoints =>
             {

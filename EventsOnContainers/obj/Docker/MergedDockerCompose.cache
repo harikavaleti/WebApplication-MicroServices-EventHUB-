@@ -33,6 +33,28 @@ services:
     ports:
     - published: 1663
       target: 1433
+  tokenserver:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi
+      dockerfile: Dockerfile
+    container_name: tokenserviceapi
+    depends_on:
+    - mssqlserver
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MvcClient: http://localhost:9900
+    image: events/tokenapi
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: null
+      frontend: null
+    ports:
+    - published: 7700
+      target: 80
   webmvc:
     build:
       context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc
@@ -41,11 +63,13 @@ services:
     depends_on:
     - eventcatalog
     environment:
+      CallBackUrl: http://localhost:9900
       EventCatalogUrl: http://eventcatalog
+      IdentityUrl: http://192.168.0.10:7700
     image: events/webmvc
     networks:
       frontend: null
     ports:
-    - published: 6006
+    - published: 9900
       target: 80
 version: '3.4'
