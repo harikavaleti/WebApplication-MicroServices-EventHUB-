@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,6 +35,8 @@ namespace WebMVC
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddMvc();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddControllersWithViews();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<IEventService, EventService>();
@@ -86,6 +89,7 @@ namespace WebMVC
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -65,7 +65,7 @@ services:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: TokenServiceApi
       target: base
-    container_name: tokenserviceapi
+    container_name: eventtokenserviceapi
     depends_on:
     - mssqlserver
     entrypoint: tail -f /dev/null

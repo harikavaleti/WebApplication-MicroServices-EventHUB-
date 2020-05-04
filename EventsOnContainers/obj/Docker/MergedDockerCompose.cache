@@ -37,7 +37,7 @@ services:
     build:
       context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi
       dockerfile: Dockerfile
-    container_name: tokenserviceapi
+    container_name: eventtokenserviceapi
     depends_on:
     - mssqlserver
     environment:
