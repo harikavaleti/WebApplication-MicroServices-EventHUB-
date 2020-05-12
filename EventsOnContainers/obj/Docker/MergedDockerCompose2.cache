@@ -1,0 +1,158 @@
+networks:
+  backend: {}
+  frontend: {}
+services:
+  cart:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi
+      dockerfile: Dockerfile
+    container_name: eventcartapi
+    depends_on:
+    - eventbasket.data
+    - rabbitmq
+    - tokenserver
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionString: eventbasket.data
+      IdentityUrl: http://192.168.0.10:7700
+    image: events/cartapi
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: null
+      frontend: null
+    ports:
+    - published: 6601
+      target: 80
+  eventbasket.data:
+    container_name: eventbasketdata
+    image: redis
+    networks:
+      backend: null
+    ports:
+    - published: 6680
+      target: 6379
+  eventcatalog:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi
+      dockerfile: Dockerfile
+    container_name: eventcatalogApi
+    depends_on:
+    - mssqlserver
+    environment:
+      DatabaseName: EventDb
+      DatabasePassword: ProductApi(!)
+      DatabaseServer: mssqlserver
+      DatabaseUser: sa
+      ExternalCatalogBaseUrl: http://localhost:6600
+    image: events/catalogapi
+    networks:
+      backend: null
+      frontend: null
+    ports:
+    - published: 6600
+      target: 80
+  mssqlserver:
+    container_name: eventsqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ProductApi(!)
+    image: microsoft/mssql-server-linux:latest
+    networks:
+      backend: null
+    ports:
+    - published: 1663
+      target: 1433
+  order:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\OrderApi
+      dockerfile: Dockerfile
+    container_name: eventorderapi
+    depends_on:
+    - mssqlserver
+    - rabbitmq
+    - tokenserver
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseName: EventOrdersDb
+      DatabasePassword: ProductApi(!)
+      DatabaseServer: mssqlserver
+      DatabaseUser: sa
+      IdentityUrl: http://192.168.0.10:7700
+    image: events/orderapi
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: null
+      frontend: null
+    ports:
+    - published: 6602
+      target: 80
+  rabbitmq:
+    container_name: eventrabbitmq
+    hostname: myrabbitmq
+    image: rabbitmq:3-management
+    networks:
+      backend: null
+    ports:
+    - published: 15673
+      target: 15672
+    - published: 5673
+      target: 5672
+    - published: 5672
+      target: 5671
+    volumes:
+    - C:\Users\Admin\rabbitmq:/var/lib/rabbitmq/mnesia:rw
+  tokenserver:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi
+      dockerfile: Dockerfile
+    container_name: tokenserviceapi
+    depends_on:
+    - mssqlserver
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MvcClient: http://localhost:9900
+    image: events/tokenapi
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: null
+      frontend: null
+    ports:
+    - published: 7700
+      target: 80
+  webmvc:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc
+      dockerfile: Dockerfile
+    container_name: webeventshop
+    depends_on:
+    - cart
+    - eventcatalog
+    - order
+    - tokenserver
+    environment:
+      CallBackUrl: http://localhost:9900
+      CartUrl: http://cart
+      EventCatalogUrl: http://eventcatalog
+      IdentityUrl: http://192.168.0.10:7700
+      OrderUrl: http://order
+      StripePrivateKey: sk_test_UnsaIsl4scWFMgShOGBEceec00yd02ofrX
+      StripePublicKey: pk_test_TsdrydjbF4Hoe46r6jByS7Ye00DmKSK91L
+    image: events/webmvc
+    networks:
+      frontend: null
+    ports:
+    - published: 9900
+      target: 80
+version: '3.4'

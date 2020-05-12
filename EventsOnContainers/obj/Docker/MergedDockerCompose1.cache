@@ -2,6 +2,62 @@ networks:
   backend: {}
   frontend: {}
 services:
+  cart:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: CartApi
+      target: base
+    container_name: eventcartapi
+    depends_on:
+    - eventbasket.data
+    - tokenserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      ConnectionString: eventbasket.data
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      IdentityUrl: http://192.168.0.10:7700
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/cartapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp3.1/CartApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 6601
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi:/src:rw
+  eventbasket.data:
+    container_name: eventbasketdata
+    image: redis
+    networks:
+      backend: {}
+    ports:
+    - published: 6680
+      target: 6379
   eventcatalog:
     build:
       context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi
@@ -65,7 +121,7 @@ services:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: TokenServiceApi
       target: base
-    container_name: eventtokenserviceapi
+    container_name: tokenserviceapi
     depends_on:
     - mssqlserver
     entrypoint: tail -f /dev/null
@@ -113,11 +169,14 @@ services:
       target: base
     container_name: webeventshop
     depends_on:
+    - cart
     - eventcatalog
+    - tokenserver
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       CallBackUrl: http://localhost:9900
+      CartUrl: http://cart
       DOTNET_USE_POLLING_FILE_WATCHER: '1'
       EventCatalogUrl: http://eventcatalog
       IdentityUrl: http://192.168.0.10:7700

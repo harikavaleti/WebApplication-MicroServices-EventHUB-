@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebMVC.Infrastructure;
+using WebMVC.Models;
 using WebMVC.Services;
 
 namespace WebMVC
@@ -35,11 +36,17 @@ namespace WebMVC
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddControllers().AddNewtonsoftJson();
             services.AddMvc();
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+           JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddControllersWithViews();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<IEventService, EventService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
+
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
             services.AddAuthentication(options =>
@@ -62,6 +69,8 @@ namespace WebMVC
                     options.Scope.Add("openid");
                     options.Scope.Add("profile");
                     options.Scope.Add("offline_access");
+                    options.Scope.Add("basket");
+                    options.Scope.Add("order");
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         NameClaimType = "name",

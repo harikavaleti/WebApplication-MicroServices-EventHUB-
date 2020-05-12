@@ -1,0 +1,278 @@
+networks:
+  backend: {}
+  frontend: {}
+services:
+  cart:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: CartApi
+      target: base
+    container_name: eventcartapi
+    depends_on:
+    - eventbasket.data
+    - rabbitmq
+    - tokenserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      ConnectionString: eventbasket.data
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      IdentityUrl: http://192.168.0.10:7700
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/cartapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp3.1/CartApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 6601
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\CartApi:/src:rw
+  eventbasket.data:
+    container_name: eventbasketdata
+    image: redis
+    networks:
+      backend: {}
+    ports:
+    - published: 6680
+      target: 6379
+  eventcatalog:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: EventCatalogApi
+      target: base
+    container_name: eventcatalogApi
+    depends_on:
+    - mssqlserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseName: EventDb
+      DatabasePassword: ProductApi(!)
+      DatabaseServer: mssqlserver
+      DatabaseUser: sa
+      ExternalCatalogBaseUrl: http://localhost:6600
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/catalogapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp3.1/EventCatalogApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 6600
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\EventCatalogApi:/src:rw
+  mssqlserver:
+    container_name: eventsqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ProductApi(!)
+    image: microsoft/mssql-server-linux:latest
+    networks:
+      backend: {}
+    ports:
+    - published: 1663
+      target: 1433
+  order:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\OrderApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: OrderApi
+      target: base
+    container_name: eventorderapi
+    depends_on:
+    - mssqlserver
+    - rabbitmq
+    - tokenserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseName: EventOrdersDb
+      DatabasePassword: ProductApi(!)
+      DatabaseServer: mssqlserver
+      DatabaseUser: sa
+      IdentityUrl: http://192.168.0.10:7700
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/orderapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp3.1/OrderApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 6602
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\OrderApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\OrderApi:/src:rw
+  rabbitmq:
+    container_name: eventrabbitmq
+    hostname: myrabbitmq
+    image: rabbitmq:3-management
+    networks:
+      backend: {}
+    ports:
+    - published: 5672
+      target: 5671
+    - published: 5673
+      target: 5672
+    - published: 15673
+      target: 15672
+    volumes:
+    - C:\Users\Admin\rabbitmq:/var/lib/rabbitmq/mnesia:rw
+  tokenserver:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: TokenServiceApi
+      target: base
+    container_name: tokenserviceapi
+    depends_on:
+    - mssqlserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      MvcClient: http://localhost:9900
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: events/tokenapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp2.1/TokenServiceApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    networks:
+      backend: {}
+      frontend: {}
+    ports:
+    - published: 7700
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\TokenServiceApi:/src:rw
+  webmvc:
+    build:
+      context: C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: WebMVC
+      target: base
+    container_name: webeventshop
+    depends_on:
+    - cart
+    - eventcatalog
+    - order
+    - tokenserver
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      CallBackUrl: http://localhost:9900
+      CartUrl: http://cart
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      EventCatalogUrl: http://eventcatalog
+      IdentityUrl: http://192.168.0.10:7700
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+      OrderUrl: http://order
+      StripePrivateKey: sk_test_UnsaIsl4scWFMgShOGBEceec00yd02ofrX
+      StripePublicKey: pk_test_TsdrydjbF4Hoe46r6jByS7Ye00DmKSK91L
+    image: events/webmvc:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/netcoreapp3.1/WebMVC.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      frontend: {}
+    ports:
+    - published: 9900
+      target: 80
+    tty: true
+    volumes:
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/app:rw
+    - C:\Users\Admin\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Admin\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Admin\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Microsoft\Xamarin\NuGet:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Admin\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\webmvc:/src:rw
+version: '3.4'
