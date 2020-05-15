@@ -44,10 +44,17 @@ The TokenServiceAPI is integrated in the application and the user can register, 
 
 The WebApp has 4 pages:
 
-Main Page
+Main Page(Events Catalog Page)
 Event Detail
-Thing to do in a City
-Search Anything
+LoginPage
+Cart 
+Order Creation
+Order complete
+Order Summary Page -->
+ Each order details page(SubPage of Order summary)
+Filter anything based on Location and event category
+LogOut page.
+
 
 
 
