@@ -22,7 +22,7 @@ namespace OrderApi.Models
 
         protected OrderItem() { }
         
-        public Order Order { get; set; }
+      //  public Order Order { get; set; }
         public int OrderId { get; set; }
 
         public OrderItem(int productId, string productName, decimal unitPrice, string pictureUrl, int units = 1)

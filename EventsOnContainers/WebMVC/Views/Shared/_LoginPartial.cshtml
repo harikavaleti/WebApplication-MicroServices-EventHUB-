@@ -18,25 +18,52 @@
                 </section>
 
                 <section class="esh-identity-drop">
-
-
-
-
-
-                    <a class="esh-identity-item"
+                    <section class="esh-identity-drop1">
+                        <a class="esh-identity-item2">
+                            <div class="esh-identity-name1 esh-identity-name--upper1" onclick="location.href='@Url.Action("Index", "Order")'">
+                                Order Summary
+                                <img class="esh-identity-image" src="~/images/logout.png">
+                            </div>
+                        </a>
+                    </section>
+                    <a class="esh-identity-item1"
                        href="javascript:document.getElementById('logoutForm').submit()">
 
                         <div class="esh-identity-name esh-identity-name--upper">Log Out</div>
                         <img class="esh-identity-image" src="~/images/logout.png">
+
                     </a>
                 </section>
+
+                <section class="col-lg-1 col-xs-12"></section>
+
+              
+
             </form>
+
+
         </div>
     </section>
 
     <section class="col-lg-1 col-xs-12">
         @await Component.InvokeAsync("Cart", new { user = UserManager.Get(User) })
     </section>
+
+}
+else if (User.FindFirst(x => x.Type == "preferred_username") != null)
+{
+    <form asp-area="" asp-controller="Order" asp-action="Index" method="post" id="orderForm" class="navbar-right">
+        <section class="esh-identity-drop">
+            <a class="esh-identity-item1"
+               href="javascript:document.getElementById('orderForm').submit()">
+
+                <div class="esh-identity-name esh-identity-name--upper">Orders</div>
+                <img class="esh-identity-image" src="~/images/logout.png">
+            </a>
+        </section>
+
+        <section class="col-lg-1 col-xs-12"></section>
+    </form>
 
 }
 else

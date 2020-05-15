@@ -258,3 +258,5 @@ C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMV
 C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\WebMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\EventDetails.cshtml.g.cs
+C:\Users\Admin\Desktop\Git\WebApplication-MicroServices\EventsOnContainers\WebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Event\View.cshtml.g.cs

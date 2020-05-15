@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "My Cart";
 }
-
+    <h2>Cart</h2>
 <div class="container">
     @if (TempData.ContainsKey("BasketInoperativeMsg"))
     {
@@ -37,7 +37,7 @@
             <article class="esh-basket-items  row">
                 <div>
                     <section class="esh-basket-item esh-basket-item--middle col-lg-3 hidden-lg-down">
-                        <img class="esh-basket-image" src="@item.PictureUrl" />
+                        <img class="esh-basket-image" src="@item.PictureUrl" width="250" height="250"/>
                     </section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-3">@item.ProductName</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.UnitPrice.ToString("N2")</section>

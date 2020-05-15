@@ -69,7 +69,8 @@ namespace WebMVC.Controllers
                         ProductName = productDetails.Name,
                         PictureUrl = productDetails.PictureUrl,
                         UnitPrice = productDetails.Price,
-                        ProductId = productDetails.Id.ToString()
+                        ProductId = productDetails.Id.ToString(),
+                        EventDate = productDetails.Date
                     };
                     await _cartService.AddItemsToCart(user, product);
                 }

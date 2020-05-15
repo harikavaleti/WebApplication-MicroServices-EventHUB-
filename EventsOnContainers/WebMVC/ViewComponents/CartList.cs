@@ -12,7 +12,6 @@ namespace WebMVC.ViewComponents
     public class CartList:ViewComponent
     {
         private readonly ICartService _cartSvc;
-
         public CartList(ICartService cartSvc) => _cartSvc = cartSvc;
         public async Task<IViewComponentResult> InvokeAsync(ApplicationUser user)
         {

@@ -28,6 +28,10 @@ namespace WebMVC.Infrastructure
             {
                 return $"{baseUri}eventlocations";
             }
+            public static string GetEvent(string baseUri, int id)
+            {
+                return $"{baseUri}GetEvent/{id}";
+            }
 
         }
         public static class Basket

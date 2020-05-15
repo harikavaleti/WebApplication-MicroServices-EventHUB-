@@ -20,6 +20,18 @@ namespace WebMVC.Services
             _baseUri = $"{config["EventCatalogUrl"]}/api/event/";
             _client = client;
         }
+
+        public async Task<EventDetails> GetEvent(int Id)
+        {
+            var getEventItemUri = ApiPaths.Catalog.GetEvent(_baseUri, Id);
+
+            var dataString = await _client.GetStringAsync(getEventItemUri);
+
+            var item = JsonConvert.DeserializeObject<EventDetails>(dataString);
+
+            return item;
+        }
+
         public async Task<Event> GetEventItemsAsync(int page, int size, int? type, int? location)
         {
 

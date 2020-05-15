@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace WebMVC.Models.OrderModels
         public int OrderId { get; set; }
 
         [BindNever]
-        public DateTime OrderDate { get; set; }
+        public DateTime Date { get; set; }
 
       
         [DisplayFormat(DataFormatString = "{0:N2}")]

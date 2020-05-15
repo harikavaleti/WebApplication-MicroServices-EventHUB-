@@ -42,7 +42,7 @@ namespace OrderApi.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
-            order.OrderStatus = OrderStatus.Preparing;
+            order.OrderStatus = OrderStatus.Shipped;
             order.Date = DateTime.UtcNow;
 
             _logger.LogInformation("In Create Order");
@@ -94,7 +94,7 @@ namespace OrderApi.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetOrders()
         {
-            var orders = await _ordersContext.Orders.ToListAsync();
+            var orders = await _ordersContext.Orders.OrderBy(o => o.Date).ToListAsync();
             return Ok(orders);
         }
     }

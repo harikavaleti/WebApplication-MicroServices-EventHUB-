@@ -1,24 +1,44 @@
 ﻿@model WebMVC.Models.EventDetails
 
+    <form asp-controller="Event" asp-action="EventDetails">
+        <img class="esh-catalog-thumbnail" onclick="location.href='@Url.Action("EventDetails","Event",new { eventId = @Model.Id })'" name="clickeventdetails"  border="0" alt="EventImage"  src="@Model.PictureUrl" width="345" height="230" />
+        <input type="hidden" asp-for="@Model.Id" name="id" />
+    </form> 
+    <form asp-controller="Cart" asp-action="AddToCart">
+        <input class="esh-catalog-button" type="submit" value="[ BOOK EVENT]" />
 
+        <div class="esh-event-title">
+            <a href="@Url.Action("EventDetails", "Event", new { eventId = @Model.Id })" class="esh-event-title"><span>@Model.Name</span></a>
+        </div>
 
+        <div class="esh-catalog-date">
+            <span>@Model.Date</span>
+        </div>
+      
+        @if (Model.Price == 0)
+         { 
+            <span class="esh-event-price-free">FREE</span>
+         }
+        else
+         {
+           <span class="esh-event-price">$@Model.Price.ToString("N2")</span>
+         }
 
-<form asp-controller="Cart" asp-action="AddToCart">
-    <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" width="345" height="230"/>
-    <input class="esh-catalog-button" type="submit" value="[ BOOK EVENT]" />
-    <div class="esh-catalog-name">
-        <span>@Model.Name</span>
-    </div>
-    <div class="esh-catalog-price">
-        <span>@Model.Price.ToString("N2")</span>
-    </div>
-    <input type="hidden" asp-for="@Model.EventLocation" name="brand" />
-    <input type="hidden" asp-for="@Model.EventLocationId" name="brandId" />
-    <input type="hidden" asp-for="@Model.EventType" name="type" />
-    <input type="hidden" asp-for="@Model.EventTypeId" name="typeId" />
-    <input type="hidden" asp-for="@Model.Description" name="description" />
-    <input type="hidden" asp-for="@Model.Id" name="id" />
-    <input type="hidden" asp-for="@Model.Name" name="name" />
-    <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
-    <input type="hidden" asp-for="@Model.Price" name="price" />
-</form>
+        <div class="esh-event-category">
+            <a href="@Url.Action("About", "Home", new { id = @Model.EventTypeId, name = @Model.EventType })"><span>@Model.EventType</span></a>
+        </div>
+        
+        <input type="hidden" asp-for="@Model.EventLocation" name="location" />
+        <input type="hidden" asp-for="@Model.EventLocationId" name="locationId" />
+        <input type="hidden" asp-for="@Model.EventType" name="type" />
+        <input type="hidden" asp-for="@Model.EventTypeId" name="typeId" />
+        <input type="hidden" asp-for="@Model.Description" name="description" />
+        <input type="hidden" asp-for="@Model.Id" name="id" />
+        <input type="hidden" asp-for="@Model.Name" name="name" />
+        <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
+        <input type="hidden" asp-for="@Model.Price" name="price" />
+        <input type="hidden" asp-for="@Model.Venue" name="venue" />
+        <input type="hidden" asp-for="@Model.Age" name="age" />
+    </form>
+
+   

@@ -86,6 +86,25 @@ namespace EventCatalogApi.Controllers
         }
 
         [HttpGet]
+        [Route("[action]/{eventId}")]
+        public async Task<IActionResult> GetEvent(int eventId)
+        {
+            if(eventId <= 0)
+            {
+                return BadRequest();
+            }
+            var item = await _context.EventDetails.SingleOrDefaultAsync(c => c.Id == eventId);
+
+            if(item != null)
+            {
+                item.PictureUrl = item.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced", _config["ExternalCatalogBaseUrl"]);
+                return Ok(item);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> EventTypes()
         {

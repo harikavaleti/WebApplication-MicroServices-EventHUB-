@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "EventDetails";
+}
+@model WebMVC.Models.EventDetails
+
+<h2>EventDetails</h2>
+   <form asp-controller="Cart" asp-action="AddToCart">
+    
+        <div class="container">
+            <div class="row equal">
+                <div class="col-sm-7 ">
+
+                    <img src="@Model.PictureUrl" alt="Event Picture" class="eventImg img-fluid" width="500" height="400">
+                    <input type="hidden" asp-for="@Model.Id" name="id" />
+                </div>
+                <div class="col-sm-4 bg-light">
+                    <div class="padding fancydate">
+                        <span>@Model.Date</span>
+
+                    </div>
+                    <div class="padding">
+                        <H2>@Model.Name</H2>
+                    </div>
+                    <div class="padding grayText">
+                        <span>Organized by <a href="#organizer">@Model.Name</a></span>
+                    </div>
+                    <div class="padding grayText">
+                        <br />
+                        <span>$@Model.Price.ToString("N2")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row top-buffer">
+                <div class="col-sm-7 padding">
+
+                    <!--Share and save options-->
+
+
+                </div>
+                <div class="col-sm-4">
+
+                        <input class="esh-catalog-button" type="submit" value="[ BOOK EVENT]" href="@Url.Action("AddToCart", "Cart", new { Id = @Model.Id })"  />
+                   
+                    <!--register button-->
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="row top-buffer">
+                <div class="col-sm-7">
+
+                    <h3>Description</h3>
+                    <p>@Model.Description</p><!--Description of event-->
+
+                    <h3>Share With Friends!</h3>
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+                </div>
+                <div class="col-sm-4">
+                    <h3>Date and Time</h3>
+                    <p>@Model.Date<br /></p><!--Date and time of the event-->
+                    <h3>Location</h3>
+                    <p>@Model.Venue<br /> @Model.EventLocation</p><!--Location of the event-->
+                    <!-- <h3>View Map</h3>-->
+                    <!--link to the Google map at bottom of page-->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="centered-text top-buffer">
+            <a id="organizer"><h3>Organizer Information</h3></a>
+            <p>@Model.Name</p>
+            <p></p>
+
+            <!--MAP-->
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            <a asp-action="Index">Back to EventCatalog</a>
+        </div>
+
+        <input type="hidden" asp-for="@Model.EventLocation" name="location" />
+        <input type="hidden" asp-for="@Model.EventLocationId" name="locationId" />
+        <input type="hidden" asp-for="@Model.EventType" name="type" />
+        <input type="hidden" asp-for="@Model.EventTypeId" name="typeId" />
+        <input type="hidden" asp-for="@Model.Description" name="description" />
+        <input type="hidden" asp-for="@Model.Id" name="id" />
+        <input type="hidden" asp-for="@Model.Name" name="name" />
+        <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
+        <input type="hidden" asp-for="@Model.Price" name="price" />
+        <input type="hidden" asp-for="@Model.Venue" name="venue" />
+        <input type="hidden" asp-for="@Model.Age" name="age" />
+   
+   </form>
+
+
+
