@@ -19,7 +19,7 @@ Is an event manager website that allows users to create, browse and promote even
                          RedisCache
                          RabbitMQ
      
-Asignments
+     Asignments
 Assignment 3a
 YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
 Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
