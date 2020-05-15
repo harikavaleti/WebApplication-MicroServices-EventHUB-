@@ -3,17 +3,17 @@
 Is an event manager website that allows users to create, browse and promote events. It was built using Microservices architecture, Docker Linux containers, Swagger, Redis, RabbitMQ, IdentityServer4, ASP.NET Core and C#.
 
 All the project is Dockerized using 8 containers:
-EventPicApi
-EventCatalogApi
-EventDetailsApi
-TokenServiceApi
-CartApi
-OrderApi
-OrderSummaryApi
-WebMvc
-Mssqlserver
-RedisCache
-RabbitMQ
+     EventPicApi
+     EventCatalogApi
+     EventDetailsApi
+     TokenServiceApi
+     CartApi
+     OrderApi
+     OrderSummaryApi
+     WebMvc
+     Mssqlserver
+     RedisCache
+     RabbitMQ
 Asignments
 Assignment 3a
 YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
