@@ -3,7 +3,7 @@
 Is an event manager website that allows users to create, browse and promote events. 
 It was built using Microservices architecture, Docker Linux containers, Swagger, Redis, RabbitMQ, IdentityServer4, ASP.NET Core and C#.
 
-               All the project is Dockerized using 8 containers:
+               List of API's and Containers in the project:
                          EventPicApi
                          EventCatalogApi
                          EventDetailsApi
@@ -32,28 +32,29 @@ Canceled orders
 Assignment 3b
 Youtubelink: https://youtu.be/-EDA6RugJ_8
 
-All the project is Dockerized we are using 6 containers:
+     All the project is Dockerized we are using 7 containers:
+     eventcatalog
+     eventcart
+     order
+     ordersummary
+     tokenservice
+     webmvc
+     mssqlserver
+     The TokenServiceAPI is integrated in the application and the user can register, login and logout from the app.
+     
 
-eventcatalog
-wishlist
-eventticket
-tokenservice
-webmvc
-mssqlserver
-The TokenServiceAPI is integrated in the application and the user can register, login and logout from the app.
+        The WebApp has 4 pages:
 
-The WebApp has 4 pages:
-
-Main Page(Events Catalog Page)
-Event Detail
-LoginPage
-Cart 
-Order Creation
-Order complete
-Order Summary Page -->
- Each order details page(SubPage of Order summary)
-Filter anything based on Location and event category
-LogOut page.
+          Main Page(Events Catalog Page)
+          Event Detail
+          LoginPage
+          Cart 
+          Order Creation
+          Order complete
+          Order Summary Page -->
+          Each order details page(Continuation Page of Order summary)
+          Filter anything based on Location and event category
+          LogOut page.
 
 
 
