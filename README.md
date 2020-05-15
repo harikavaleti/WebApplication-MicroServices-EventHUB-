@@ -25,13 +25,13 @@ Assignment 3a
 YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
 Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
 
-Communication between services via messaging using RabbitMQ
-Microservice Cart was modified and now is using use as cache Redis to save/update the user's cart and integrated with client(Web).
-Logging all the messages while creating cart and saving orders.
-Microservice Order was added to the project and saving all orders to MSSQL Database and integrated with client(Web).
-Integrated with StripeAPI for Payment.
-Created EventDetails API to view each catalog with full details and integrated with client(Web).
-Created OrdersSummary API to view past and present orders and to view details of orders, also integrated with client(Web).
+    Communication between services via messaging using RabbitMQ
+    Microservice Cart was modified and now is using use as cache Redis to save/update the user's cart and integrated with client(Web).
+    Logging all the messages while creating cart and saving orders.
+    Microservice Order was added to the project and saving all orders to MSSQL Database and integrated with client(Web).
+    Integrated with StripeAPI for Payment.
+    Created EventDetails API to view each catalog with full details and integrated with client(Web).
+    Created OrdersSummary API to view past and present orders and to view details of orders, also integrated with client(Web).
 
 
 Assignment 3b
