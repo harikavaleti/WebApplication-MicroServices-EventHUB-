@@ -14,6 +14,7 @@ All the project is Dockerized using 8 containers:
      Mssqlserver
      RedisCache
      RabbitMQ
+     
 Asignments
 Assignment 3a
 YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
