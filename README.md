@@ -21,10 +21,6 @@ Is an event manager website that allows users to create, browse, register and pr
      
 
 
-Assignment 3a
-YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
-Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
-
     Microservice EventCatalog was created to the project, also added MSMSqL to load data for API's in microservice.
     WebMVC(Client for microservices) is added to the project which is to integrate with API's for User interface experience.
     TokenService API(microservice) is added to authenticate & authorize User's deatils.
@@ -36,8 +32,7 @@ Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
     Created OrdersSummary API to view past and present orders and to view details of each order, also integrated with client(Web).
     Communication between services via messaging using RabbitMQ
 
-Assignment 3b
-Youtubelink: https://youtu.be/-EDA6RugJ_8
+
 
      All the project is Dockerized we are using 7 containers:
      eventcatalog
@@ -64,6 +59,15 @@ Youtubelink: https://youtu.be/-EDA6RugJ_8
           Filter anything based on Location and event category
           LogOut page.
 
+Assignment 3a
+YouTubelink: https://www.youtube.com/watch?v=DJ7ZB40gS6U
+Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
+
+Assignment 3b
+Youtubelink: https://youtu.be/-EDA6RugJ_8
+
+Assignment 3c(Demo)
+YouTubeLink: https://youtu.be/eL_8bD0V7WM
 
 
 
