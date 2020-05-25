@@ -27,14 +27,14 @@ Another link: https://www.youtube.com/watch?v=Ad9Y6ICOFho&feature=youtu.be
 
     Microservice EventCatalog was created to the project, also added MSMSqL to load data for API's in microservice.
     WebMVC(Client for microservices) is added to the project which is to integrate with API's for User interface experience.
-    Communication between services via messaging using RabbitMQ
-    Microservice Cart was modified and now is using use as cache Redis to save/update the user's cart and integrated with client(Web).
+    TokenService API(microservice) is added to authenticate & authorize User's deatils.
+    Microservice Cart was modified and it is using using RedisCache to save/update the user's cart and integrated with client(Web).
+    Microservice Order was added to the project and saving all orders to MSSQL Database.
     Logging all the messages while creating cart and saving orders.
-    Microservice Order was added to the project and saving all orders to MSSQL Database and integrated with client(Web).
-    Integrated with StripeAPI for Payment.
-    Created EventDetails API to view each catalog with full details and integrated with client(Web).
-    Created OrdersSummary API to view past and present orders and to view details of orders, also integrated with client(Web).
-
+    Integrated with StripeAPI for test Payment.
+    Created EventDetails API to view each catalog item with full details and integrated with client(Web).
+    Created OrdersSummary API to view past and present orders and to view details of each order, also integrated with client(Web).
+    Communication between services via messaging using RabbitMQ
 
 Assignment 3b
 Youtubelink: https://youtu.be/-EDA6RugJ_8
