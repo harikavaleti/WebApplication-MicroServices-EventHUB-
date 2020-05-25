@@ -42,7 +42,7 @@ namespace OrderApi.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
-            order.OrderStatus = OrderStatus.Shipped;
+            order.OrderStatus = OrderStatus.Preparing;
             order.Date = DateTime.UtcNow;
 
             _logger.LogInformation("In Create Order");
