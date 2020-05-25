@@ -1,6 +1,6 @@
 # WebApplication(EventHub)-MicroServices(API)
  
-Is an event manager website that allows users to create, browse, register and promote events. 
+Is an EventHub website that allows users to create, browse, register and promote events. 
 
 
      It was built using Microservices architecture, Docker Linux containers, Swagger, Redis, RabbitMQ, IdentityServer4, ASP.NET Core 
